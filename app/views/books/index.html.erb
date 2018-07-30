@@ -1,0 +1,35 @@
+<div class="row">
+	<!-- When no books present -->
+	<% if @books.count == 0 %>
+		<% if user_signed_in? %>
+			<% unless params[:category].blank? %>
+				<!-- When no there is not even a single books are present in respective category -->
+		    	<h1 class="current-category"> <%= params[:category] %> </h1>
+		    	<h2> There is no books added to this category yet!. </h2>
+		    <% else %>
+		    	<!-- When no there is not even a single books are added present in entire app -->
+		    	<h1 class="current-category"> No Books are added !!! </h1>
+		    <% end %>
+		 <% else %>
+		 	<h2> Please Log in.. and add books. </h2>
+		 <% end %>
+	<% end %>
+
+</div>
+
+<div class="row">
+	
+	<% @books.each do |book| %>
+	  
+		<div class="col-md-4">
+	    	<a href="/books/<%= book.id %>">
+	  	    <%= image_tag book.book_img.url(:original), class: "book" %>
+	        </a>
+        </div>
+	
+	<% end %>
+
+</div>
+
+
+
